@@ -11,6 +11,11 @@ public class Food : MonoBehaviour
         RandomPosition();
     }
 
+    private void Update()
+    {
+        ColliderFood();
+    }
+
     void RandomPosition()
     {
         Bounds bounds = gridArea.bounds;
@@ -25,7 +30,18 @@ public class Food : MonoBehaviour
         if(collision.tag == "Player")
         {
             RandomPosition();
-
         }
+    }
+
+    void ColliderFood()
+    {
+        foreach(GameObject go in GameObject.FindGameObjectsWithTag("Obstacle"))
+        {
+            if (this.transform.position == go.transform.position)
+            {
+                RandomPosition();
+            }
+        }
+      
     }
 }
